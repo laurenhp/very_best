@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @favorite.errors.any? %>
+  <% @favorite.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Favorite</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_favorite" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for users_id -->
+      <div class="form-group">
+        <label for="users_id" class="control-label">
+          Users
+        </label>
+
+        <input type="text" id="users_id" name="users_id" placeholder="Users" class="form-control" value="<%= @favorite.users_id %>">
+      </div>
+
+      <!-- Label and input for food_id -->
+      <div class="form-group">
+        <label for="food_id" class="control-label">
+          Food
+        </label>
+
+        <input type="text" id="food_id" name="food_id" placeholder="Food" class="form-control" value="<%= @favorite.food_id %>">
+      </div>
+
+      <!-- Label and input for resutaurant_id -->
+      <div class="form-group">
+        <label for="resutaurant_id" class="control-label">
+          Resutaurant
+        </label>
+
+        <input type="text" id="resutaurant_id" name="resutaurant_id" placeholder="Resutaurant" class="form-control" value="<%= @favorite.resutaurant_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Favorite
+      </button>
+      or
+      <a href="/favorites">Cancel</a>
+    </form>
+  </div>
+</div>
